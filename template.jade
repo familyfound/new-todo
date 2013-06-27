@@ -1,0 +1,4 @@
+form.new-todo(ng-submit="addTodo()")
+  select.todo-type(ng-model='todoType', ng-options='value for value in todoTypes')
+  input.new-todo(placeholder='Describe your todo', ng-model='todoDescription', type='text')
+  button.btn.btn-primary(type='submit') Add

@@ -1,0 +1,1 @@
+module.exports = '\n<form ng-submit="addTodo()" class="new-todo">\n  <select ng-model="todoType" ng-options="value for value in todoTypes" class="todo-type"></select>\n  <input placeholder="Describe your todo" ng-model="todoDescription" type="text" class="new-todo"/>\n  <button type="submit" class="btn btn-primary">Add</button>\n</form>';

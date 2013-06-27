@@ -1,0 +1,20 @@
+
+form.new-todo {
+  margin-bottom: 5px;
+}
+
+form.new-todo select {
+  width: 160px;
+}
+
+form.new-todo input.new-todo {
+  width: 530px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  box-sizing: inherit;
+}
+
+form.new-todo button {
+  margin-bottom: 11px;
+  margin-left: 5px;
+}
