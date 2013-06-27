@@ -14,7 +14,8 @@ angular.module('new-todo', ['ffapi'])
       restrict: 'A',
       template: template,
       link: function (scope, element, attrs) {
-        var name = attrs.newTodo;
+        var name = attrs.newTodo
+          , pidName = attrs.personId;
         scope.todoType = todoTypes[0];
         scope.todoTypes = todoTypes;
         scope.todoDescription = '';
@@ -23,7 +24,7 @@ angular.module('new-todo', ['ffapi'])
             completed: false,
             type: scope.todoType,
             title: scope.todoDescription,
-            person: scope.personId
+            person: scope.$parent[pidName]
           };
           scope.todoType = todoTypes[0];
           scope.todoDescription = '';
