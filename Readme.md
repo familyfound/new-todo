@@ -1,7 +1,7 @@
 
 # new-todo
 
-  New todo form
+  New todo form for familyfound
 
 ## Installation
 
@@ -9,9 +9,21 @@
 
     $ component install familyfound/new-todo
 
-## API
+## Build
 
+    make
 
+## Example
+
+    make example
+
+## Screenshots
+
+![full screenshot](/docs/media/full.png?raw=true)
+
+### Todo types
+
+![todo types](/docs/media/dropdown.png?raw=true)
 
 ## License
 

@@ -4,7 +4,44 @@ var angular = require('angularjs')
 
   , template = require('./template');
 
-var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'];
+var todoGroups = [
+  'General',
+  {
+    name: 'Data Cleanup',
+    items: [
+      'Cleanup dates and places',
+      'Merge & resolve duplicates'
+    ]
+  }, {
+    name: 'Relationships',
+    items: [
+      'Find spouse',
+      'Find missing children',
+      'Find parents',
+      'Resolve duplicate / conflicting parents'
+    ]
+  }, {
+    name: 'Sources',
+    items: [
+      'Find in census',
+      'Find birth record',
+      'Find death record',
+      'Find marriage record',
+      'Find gravestone'
+    ]
+  }
+];
+
+var todoTypes = [];
+for (var i=0; i<todoGroups.length; i++) {
+  if (typeof(todoGroups[i]) === 'string') {
+    todoTypes.push({value: todoGroups[i]});
+    continue;
+  }
+  for (var j=0; j<todoGroups[i].items.length; j++) {
+    todoTypes.push({value: todoGroups[i].items[j], group: todoGroups[i].name});
+  }
+}
 
 angular.module('new-todo', ['ffapi'])
   .directive('newTodo', function (ffapi) {
@@ -17,12 +54,16 @@ angular.module('new-todo', ['ffapi'])
         var name = attrs.newTodo
           , pidName = attrs.personId;
         scope.todoType = todoTypes[0];
+        scope.$watch('todoType', function (value, old) {
+          if (value === old || !value) return;
+          element.find('input')[0].focus();
+        });
         scope.todoTypes = todoTypes;
         scope.todoDescription = '';
         scope.addTodo = function () {
           var todo = {
             completed: false,
-            type: scope.todoType,
+            type: scope.todoType.value,
             title: scope.todoDescription,
             person: scope.$parent[pidName]
           };
